@@ -57,12 +57,6 @@ const getTester: typeof getTesterImpl = () => {
 			if (failMessages.length > 0) {
 				assert.fail(failMessages.join("\n\n"));
 			} else {
-				// const snapshotFilepath = path.join(path.dirname(t.filePath), path.basename(t.filePath) + '.snapshot.md');
-
-				// t.assert.fileSnapshot(snapshot.join("\n\n"), snapshotFilepath, {
-				// 	serializers: [(value) => value],
-				// })
-
 				t.assert.snapshot(snapshot.join("\n\n"), {
 					serializers: [(value) => value],
 				});
