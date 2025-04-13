@@ -42,7 +42,7 @@ Then add the test script to `package.json`
 ```diff
 {
   "scripts": {
-+	"test": "node **/*.test.js --test-update-snapshots",
++	"test": "node --test **/*.test.js",
 +	"test:update-snapshots": "npm run test --test-update-snapshots"
   }
 }
