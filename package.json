@@ -4,9 +4,9 @@
     "private": false,
     "description": "A library for testing ESLint plugin with snapshots",
     "sideEffects": false,
-	"engines": {
-		"node": ">=22.14.0"
-	},
+    "engines": {
+        "node": ">=22.14.0"
+    },
     "files": [
         "dist"
     ],
@@ -41,7 +41,6 @@
         "@rslib/core": "^0.6.2",
         "@types/babel__code-frame": "^7.0.6",
         "@types/node": "^22.14.1",
-        "eslint": "^9.24.0",
         "knip": "^5.46.3",
         "tsx": "^4.19.2",
         "typescript": "^5.8.2"
@@ -61,5 +60,8 @@
     "dependencies": {
         "@babel/code-frame": "^7.26.2",
         "outdent": "^0.8.0"
+    },
+    "peerDependencies": {
+        "eslint": "^9.24.0"
     }
 }
