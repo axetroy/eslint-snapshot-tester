@@ -7,6 +7,10 @@
 
 A library for testing ESLint rules with snapshot testing. It is based on `node:test`
 
+requirement:
+
+-   Node.js >= 22.14.0 (Since snapshot testing is stable in Node.js 22.14.0 and later)
+
 ## Installation
 
 ```bash
