@@ -1,0 +1,16 @@
+exports[`no-var 1`] = `
+## invalid(1): var a = 1;
+
+  > Input
+  
+        1 | var a = 1;
+
+  > Output
+  
+        1 | let a = 1;
+
+  > Error 1/1: 禁止使用 'var'，请改用 'let' 或 'const'。
+  
+      > 1 | var a = 1;
+          | ^^^^^^^^^^
+`;

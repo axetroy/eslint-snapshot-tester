@@ -1,0 +1,65 @@
+{
+    "name": "eslint-snapshot-tester",
+    "version": "1.0.0",
+    "private": false,
+    "description": "A library for testing ESLint plugin with snapshots",
+    "sideEffects": false,
+	"engines": {
+		"node": ">=22.14.0"
+	},
+    "files": [
+        "dist"
+    ],
+    "type": "commonjs",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.mjs",
+    "exports": {
+        "./package.json": {
+            "import": "./package.json",
+            "require": "./package.json"
+        },
+        ".": {
+            "require": {
+                "default": "./dist/cjs/index.js",
+                "types": "./dist/cjs/index.d.ts"
+            },
+            "import": {
+                "default": "./dist/esm/index.mjs",
+                "types": "./dist/esm/index.d.ts"
+            }
+        }
+    },
+    "scripts": {
+        "test": "node --import tsx --test **/*.test.ts **/**/*.test.ts",
+        "test:update-snapshot": "node --import tsx --test-update-snapshots --test **/*.test.ts **/**/*.test.ts ",
+        "build": "knip && rslib build",
+        "prepack": "npm run build"
+    },
+    "author": "Axetroy <axetroy.dev@gmail.com>",
+    "license": "SEE LICENSE IN LICENSE",
+    "devDependencies": {
+        "@rslib/core": "^0.6.2",
+        "@types/babel__code-frame": "^7.0.6",
+        "@types/node": "^22.14.1",
+        "eslint": "^9.24.0",
+        "knip": "^5.46.3",
+        "tsx": "^4.19.2",
+        "typescript": "^5.8.2"
+    },
+    "keywords": [
+        "eslint",
+        "test"
+    ],
+    "homepage": "https://github.com/axetroy/eslint-snapshot-tester#readme",
+    "bugs": {
+        "url": "https://github.com/axetroy/eslint-snapshot-tester/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/axetroy/eslint-snapshot-tester.git"
+    },
+    "dependencies": {
+        "@babel/code-frame": "^7.26.2",
+        "outdent": "^0.8.0"
+    }
+}
