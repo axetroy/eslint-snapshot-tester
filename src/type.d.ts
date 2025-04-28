@@ -22,4 +22,4 @@ export interface TestCase {
 
 export declare function test(name: string, rule: eslint.Rule.RuleModule, testCase: TestCase, options?: TestOptions): void;
 
-export declare function getTester(): typeof test;
+export declare function getTester(baseConfig?: eslint.Linter.Config): typeof test;

@@ -1,7 +1,7 @@
 import { getTester } from "../src/index";
 import noVarPlugin from "./plugin/no-var";
 
-const test = getTester(__filename);
+const test = getTester();
 
 test("no-var", noVarPlugin, {
 	valid: ["const a = 1;"],

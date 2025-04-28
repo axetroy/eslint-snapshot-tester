@@ -8,7 +8,7 @@ import { codeFrameColumns } from "@babel/code-frame";
 
 import type { getTester as getTesterImpl, test as testFn } from "./type";
 
-const getTester: typeof getTesterImpl = () => {
+const getTester: typeof getTesterImpl = (baseConfig = {}) => {
 	const test: typeof testFn = (name, rule, testCase, options = {}) => {
 		nativeTest(name, options, async (t) => {
 			const { valid = [], invalid = [] } = testCase;
@@ -21,7 +21,7 @@ const getTester: typeof getTesterImpl = () => {
 				const code = typeof validCase === "string" ? validCase : validCase.code;
 				const options = typeof validCase === "string" ? undefined : validCase.options;
 
-				const message = await runSingleTest(index, rule, code, options);
+				const message = await runSingleTest(baseConfig, index, rule, code, options);
 
 				if (message) {
 					failMessages.push(
@@ -39,7 +39,7 @@ const getTester: typeof getTesterImpl = () => {
 				const code = typeof invalidCase === "string" ? invalidCase : invalidCase.code;
 				const options = typeof invalidCase === "string" ? undefined : invalidCase.options;
 
-				const message = await runSingleTest(index, rule, code, options);
+				const message = await runSingleTest(baseConfig, index, rule, code, options);
 
 				if (message.length > 0) {
 					snapshot.push(message);
@@ -68,6 +68,7 @@ const getTester: typeof getTesterImpl = () => {
 };
 
 async function runSingleTest(
+	baseConfig: eslint.Linter.Config,
 	index: number,
 	rule: eslint.Rule.RuleModule,
 	code: string,
@@ -77,10 +78,13 @@ async function runSingleTest(
 		cache: false,
 		overrideConfigFile: true,
 		baseConfig: {
-			...this.baseConfig,
-			rules: {
-				"snapshot-tester/test": ["error", ...options].filter(Boolean), // 动态注入规则
-			},
+			...baseConfig,
+			...({
+				rules: {
+					"snapshot-tester/test": ["error", ...options].filter(Boolean), // 动态注入规则,
+					...(baseConfig.rules || {}),
+				},
+			} as unknown as eslint.Linter.Config),
 		},
 		plugins: {
 			"snapshot-tester": { rules: { test: rule } }, // 自定义规则注入

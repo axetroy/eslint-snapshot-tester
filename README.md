@@ -31,7 +31,7 @@ const { getTester } = require("eslint-snapshot-tester");
 // no-var.test.js
 const { getTester } = require("eslint-snapshot-tester");
 
-const test = getTester("test");
+const test = getTester();
 
 test("no-var", noVarRule, {
 	valid: ["const foo = 1;", "let foo = 1;"],
