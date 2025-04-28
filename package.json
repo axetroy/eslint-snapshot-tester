@@ -1,6 +1,6 @@
 {
     "name": "eslint-snapshot-tester",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "private": false,
     "description": "A library for testing ESLint plugin with snapshots",
     "sideEffects": false,
